@@ -3,7 +3,7 @@ import type { Package, Repo } from './GithubResponseTypes'
 export async function getReposForUser(user: string) {
   const resp = await fetch(`https://api.github.com/users/${user}/repos`)
   const repos = await resp.json() as unknown as Repo[]
-  return repos.map(({ full_name }) => full_name)
+  return repos.map(({ name }) => name)
 }
 
 /**
