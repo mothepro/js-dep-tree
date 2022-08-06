@@ -27,13 +27,14 @@ export async function getDepsForPackage(user: string, pkg: string) {
  * @param user GitHub username
  */
 export async function getDepsForUser(user: string) {
-  const ret: Map<string, number> = new Map
+  const ret: Map<string, string[]> = new Map
   for (const repo of await getReposForUser(user)) {
     try {
-      for (const dep of await getDepsForPackage(user, repo)) {
-        const currentDepCount = ret.get(dep) ?? 0
-        ret.set(dep, 1 + currentDepCount)
-      }
+      for (const dep of await getDepsForPackage(user, repo))
+        ret.set(dep, [
+          ...(ret.get(dep) ?? []),
+          repo
+        ])
     } catch {} // Skip this repo if we can't get it's deps
   }
   return ret
