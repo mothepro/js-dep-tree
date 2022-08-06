@@ -12,8 +12,10 @@ export default function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <input type="text" defaultValue={username} ref={usernameEl} placeholder="Github Username" />
-        <button onClick={() => setUsername(usernameEl.current!.value.trim())}>Check</button>
+        <label>
+          <input type="text" defaultValue={username} ref={usernameEl} placeholder="Github Username" />
+          <input type="submit" onClick={() => setUsername(usernameEl.current!.value.trim())} value="Go" />
+        </label>
         <QueryClientProvider client={queryClient}>
           <GithubStats username={username} />
         </QueryClientProvider>
