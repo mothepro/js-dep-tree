@@ -1,8 +1,7 @@
 import { KeyboardEvent, useRef, useState } from 'react'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import './App.css'
-import GithubStats from './GithubStats'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import GithubStats from './GithubStats'
 
 const queryClient = new QueryClient
 

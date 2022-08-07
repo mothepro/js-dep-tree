@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { getDepsForUser, getReposForUser } from './util/GithubService'
+import { getDepsForUser, getReposForUser } from '../util/GithubService'
 
 interface Props {
   username: string
