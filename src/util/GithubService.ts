@@ -1,12 +1,20 @@
 import type { Package, Repo } from './GithubResponseTypes'
 
+/**
+ * Get a list of the public repo's for a Github user.
+ * @param user Github user
+ * @returns
+ */
 export async function getReposForUser(user: string) {
   const resp = await fetch(`https://api.github.com/users/${user}/repos`)
   const repos = await resp.json() as unknown as Repo[]
+  if (!Array.isArray(repos))
+    throw Error(repos)
   return repos.map(({ name }) => name)
 }
 
 /**
+ * Get the dependencies from a `pkg`'s `package.json`.
  * @param user Github user
  * @param pkg Github user's package
  * @returns the `dependencies` object found in the repo's `package.json`

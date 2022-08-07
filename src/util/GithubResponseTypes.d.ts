@@ -1,8 +1,3 @@
-interface Credentials {
-  username: string
-  pat?: string
-}
-
 export interface Package {
   name: string
   description: string
@@ -10,6 +5,7 @@ export interface Package {
   devDependencies: Record<string, string>
 }
 
+// https://api.github.com/users/${user}/repos
 export interface Repo {
     id: number;
     node_id: string;
@@ -114,13 +110,4 @@ export interface Repo {
     open_issues: number;
     watchers: number;
     default_branch: string;
-}
-
-type User = string
-
-export default interface Service {
-  // list of repos
-  getRepos(user: Credentials): Promise<Repo[]>
-  // package.json contents of a path
-  getPackage(username: User, reponame: Repo): Promise<Record<string, unknown>>
 }
